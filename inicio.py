@@ -24,7 +24,7 @@ class tkinterApp(tk.Tk):
 
 		# iterating through a tuple consisting
 		# of the different page layouts
-		for F in (PageManager,):
+		for F in (PageManager, Proyectos, R):
 
 			frame = F(container, self)
 
