@@ -24,7 +24,7 @@ class tkinterApp(tk.Tk):
 
 		# iterating through a tuple consisting
 		# of the different page layouts
-		for F in (PageManager, Proyectos, R):
+		for F in (ListaProyect, Proyectos, Registroproyect, Registroemp):
 
 			frame = F(container, self)
 
@@ -35,7 +35,7 @@ class tkinterApp(tk.Tk):
 
 			frame.grid(row = 0, column = 0, sticky ="nsew")
 
-		self.show_frame(PageManager)
+		self.show_frame(ListaProyect)
 
 	# to display the current frame passed as
 	# parameter
@@ -45,17 +45,19 @@ class tkinterApp(tk.Tk):
 
 # first window frame startpage
 
-class PageManager(tk.Frame):
+class ListaProyect(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
-		
+
+        label = ttk.Label(self, text ="Proyecto", font = LARGEFONT)
+		label.grid(row = 0, column = 4, padx = 100, pady = 100)
 
 		button1 = ttk.Button(self, text ="Visualizar proyectos en curso",
 		command = lambda : controller.show_frame(Proyectos))
-	
+
 		# putting the button in its place by
 		# using grid
-		button1.grid(row = 1, column = 1, padx = 10, pady = 10)
+		button1.grid(row = 1, column = 1, padx = 100, pady = 100)
 
 		## button to show frame 2 with text layout2
 		button2 = ttk.Button(self, text ="Empezar nuevo proyecto",
@@ -63,33 +65,51 @@ class PageManager(tk.Frame):
 	
 		# putting the button in its place by
 		# using grid
-		button2.grid(row = 1, column = 2, padx = 10, pady = 10)
+		button2.grid(row = 1, column = 5, padx = 100, pady = 100)
 
 		button3 = ttk.Button(self, text ="Lista de empleados",
 		command = lambda : controller.show_frame(Registroemp))
 	
 		# putting the button in its place by
 		# using grid
-		button3.grid(row = 1, column = 3, padx = 10, pady = 10)
+		button3.grid(row = 1, column = 10, padx = 100, pady = 100)
 
 
 class Proyectos(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
-		label = ttk.Label(self, text ="Proyectos", font = LARGEFONT)
-		label.grid(row = 0, column = 4, padx = 10, pady = 10)
+		label = ttk.Label(self, text ="Proyecto", font = LARGEFONT)
+		label.grid(row = 2, column = 4, padx = 10, pady = 10)
+		button1 = ttk.Button(self, text ="Atras",
+		command = lambda : controller.show_frame(PageManager))
+	
+		# putting the button in its place by
+		# using grid
+		button1.grid(row = 1, column = 1, padx = 10, pady = 10)
 
 class Registroproyect(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
 		label = ttk.Label(self, text ="Nombre del Nuevo Proyecto", font = LARGEFONT)
-		label.grid(row = 0, column = 4, padx = 10, pady = 10)
+		label.grid(row = 2, column = 4, padx = 10, pady = 10)
+		button1 = ttk.Button(self, text ="Atras",
+		command = lambda : controller.show_frame(PageManager))
+	
+		# putting the button in its place by
+		# using grid
+		button1.grid(row = 1, column = 1, padx = 10, pady = 10)
 
 class Registroemp(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
 		label = ttk.Label(self, text ="EMPLEADOS", font = LARGEFONT)
-		label.grid(row = 0, column = 4, padx = 10, pady = 10)
+		label.grid(row = 2, column = 4, padx = 10, pady = 10)
+		button1 = ttk.Button(self, text ="Atras",
+		command = lambda : controller.show_frame(PageManager))
+	
+		# putting the button in its place by
+		# using grid
+		button1.grid(row = 1, column = 1, padx = 10, pady = 10)
 
 
 # Driver Code
