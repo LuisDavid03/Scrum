@@ -22,33 +22,41 @@ c = connection.cursor()
 #c = conexion.cursor()
 
 # width and height
-w = 450
-h = 525
+w = 1280
+h = 720
 # background color
-bgcolor = "#bdc3c7"
+bgcolor = "#B6D1CE"
+
+oscuro_color = "#39B29D"
+claro_color = "#69CBBF"
+
+tex_oscuro_color = "#364388"
+tex_claro_color = "#475499"
+tex_superclaro_color = "#686C81"
 
 # ----------- CENTER FORM ------------- #
-root.overrideredirect(1) # remove border
-ws = root.winfo_screenwidth()
-hs = root.winfo_screenheight()
-x = (ws-w)/2
-y = (hs-h)/2
-root.geometry("%dx%d+%d+%d" % (w, h, x, y))
+#   root.overrideredirect(1) # remove border
+#   ws = root.winfo_screenwidth()
+#   hs = root.winfo_screenheight()
+#   x = (ws-w)/2
+#   y = (hs-h)/2
+#   root.geometry("%dx%d+%d+%d" % (w, h, x, y))
 
 # ----------- HEADER ------------- #
 
-headerframe = tk.Frame(root, highlightbackgroun='yellow', highlightcolor='yellow', highlightthickness=2, bg='#95a5a6', width=w, height=70)
-titleframe = tk.Frame(headerframe, bg='yellow', padx=1, pady=1)
-title_label = tk.Label(titleframe, text='Login', padx=20, pady=5, bg='green', fg='#fff', font=('Tahoma',24), width=8)
-close_button = tk.Button(headerframe, text='x', borderwidth=1, relief='solid', font=('Verdana',12))
+headerframe = tk.Frame(root, highlightbackgroun= bgcolor, highlightcolor= bgcolor, highlightthickness=2, bg= bgcolor, width=w, height=100)
+titleframe = tk.Frame(headerframe, bg= oscuro_color, padx=5, pady=5)
+title_label = tk.Label(titleframe, text='SCRUM', padx=100, pady=1, bg= claro_color, fg=tex_oscuro_color, font=('IBM Plex Mono',35), width=8)
+buttonframe = tk.Frame(headerframe, bg= oscuro_color, padx=5, pady=5)
+close_button = tk.Button(buttonframe, text='Salir', font=('IBM Plex Mono',12))
 
 headerframe.pack()
 titleframe.pack()
 title_label.pack()
 close_button.pack()
 
-titleframe.place(y=26, relx=0.5, anchor=CENTER)
-close_button.place(x=410, y=10)
+titleframe.place(y=50, relx=0.5, anchor=CENTER)  # UBICACIÓN DEL TÍTULO
+buttonframe.place(x=1210, y=25)                  # UBICACIÓN DEL BOTÓN
 
 # close window
 def close_win():
@@ -61,32 +69,47 @@ close_button['command'] = close_win
 mainframe = tk.Frame(root, width=w, height=h)
 
 # ----------- Login Page ------------- #
+
+#69CBBF  Claro
+#39B29D  Oscuro
+#bgcolor  Background
+
+#364388  TEXTO Oscuro (Título)
+#475499  Texto Claaro
+#686C81  Texto Más Claro
+
 loginframe = tk.Frame(mainframe, width=w, height=h)
-login_contentframe = tk.Frame(loginframe, padx=30, pady=100, highlightbackgroun='yellow', highlightcolor='yellow', highlightthickness=2, bg=bgcolor)
+login_contentframe = tk.Frame(loginframe, padx=30, pady=100, highlightbackgroun= oscuro_color, highlightcolor= oscuro_color, highlightthickness=2, bg= bgcolor, width=w, height=h-100)
 
-username_label = tk.Label(login_contentframe, text='Username:', font=('Verdana',16), bg=bgcolor)
-password_label = tk.Label(login_contentframe, text='Password:', font=('Verdana',16), bg=bgcolor)
+username_label = tk.Label(login_contentframe, text='Username:', font=('IBM Plex Mono',16), bg= bgcolor,fg = tex_superclaro_color)
+password_label = tk.Label(login_contentframe, text='Password:', font=('IBM Plex Mono',16), bg= bgcolor,fg = tex_superclaro_color)
 
-username_entry = tk.Entry(login_contentframe, font=('Verdana',16))
-password_entry = tk.Entry(login_contentframe, font=('Verdana',16), show='*')
+username_entry = tk.Entry(login_contentframe, font=('IBM Plex Mono',16))
+password_entry = tk.Entry(login_contentframe, font=('IBM Plex Mono',16), show='*')
 
-login_button = tk.Button(login_contentframe,text="Login", font=('Verdana',16), bg='#2980b9',fg='#fff', padx=25, pady=10, width=25)
+login_button = tk.Button(login_contentframe,text="Login", font=('IBM Plex Mono',16), bg=claro_color,fg=tex_oscuro_color, padx=15, pady=5, width=20)
 
-go_register_label = tk.Label(login_contentframe, text=">> don't have an account? create one" , font=('Verdana',10), bg=bgcolor, fg='red')
+go_register_label = tk.Label(login_contentframe, text=">> don't have an account? create one" , font=('IBM Plex Mono',10), bg= bgcolor, fg='red')
 
 mainframe.pack(fill='both', expand=1)
 loginframe.pack(fill='both', expand=1)
 login_contentframe.pack(fill='both', expand=1)
 
-username_label.grid(row=0, column=0, pady=10)
-username_entry.grid(row=0, column=1)
+#username_label.grid(row=0, column=2, pady=10)
+username_label.place(x=400, y=100)
+#username_entry.grid(row=0, column=3)
+username_entry.place(x=560, y=100)
 
-password_label.grid(row=1, column=0, pady=10)
-password_entry.grid(row=1, column=1)
+#password_label.grid(row=1, column=2, pady=10)
+password_label.place(x=400, y=160)
+#password_entry.grid(row=1, column=3)
+password_entry.place(x=560, y=160)
 
-login_button.grid(row=2, column=0, columnspan=2, pady=40)
+#login_button.grid(row=2, column=0, columnspan=2, pady=40)
+login_button.place(x=460, y=320)
 
-go_register_label.grid(row=3, column=0, columnspan=2, pady=20)
+#go_register_label.grid(row=3, column=0, columnspan=2, pady=20)
+go_register_label.place(x=500, y=400)
 
 # create a function to display the register frame
 def go_to_register():
@@ -125,34 +148,34 @@ login_button['command'] = login
 # ----------- Register Page ------------- #
 
 registerframe = tk.Frame(mainframe, width=w, height=h)
-register_contentframe = tk.Frame(registerframe, padx=15, pady=15, highlightbackgroun='yellow', highlightcolor='yellow', highlightthickness=2, bg=bgcolor)
+register_contentframe = tk.Frame(registerframe, padx=15, pady=15, highlightbackgroun= oscuro_color, highlightcolor= oscuro_color, highlightthickness=2, bg= bgcolor)
 
-fullname_label_rg = tk.Label(register_contentframe, text='Fullname:', font=('Verdana',14), bg=bgcolor)
-username_label_rg = tk.Label(register_contentframe, text='Username:', font=('Verdana',14), bg=bgcolor)
-password_label_rg = tk.Label(register_contentframe, text='Password:', font=('Verdana',14), bg=bgcolor)
-confirmpass_label_rg = tk.Label(register_contentframe, text='Re-Password:', font=('Verdana',14), bg=bgcolor)
-phone_label_rg = tk.Label(register_contentframe, text='Phone:', font=('Verdana',14), bg=bgcolor)
-gender_label_rg = tk.Label(register_contentframe, text='Gender:', font=('Verdana',14), bg=bgcolor)
-
-
+fullname_label_rg = tk.Label(register_contentframe, text='Fullname:', font=('IBM Plex Mono',14), bg= bgcolor)
+username_label_rg = tk.Label(register_contentframe, text='Username:', font=('IBM Plex Mono',14), bg= bgcolor)
+password_label_rg = tk.Label(register_contentframe, text='Password:', font=('IBM Plex Mono',14), bg= bgcolor)
+confirmpass_label_rg = tk.Label(register_contentframe, text='Re-Password:', font=('IBM Plex Mono',14), bg= bgcolor)
+phone_label_rg = tk.Label(register_contentframe, text='Phone:', font=('IBM Plex Mono',14), bg= bgcolor)
+gender_label_rg = tk.Label(register_contentframe, text='Gender:', font=('IBM Plex Mono',14), bg= bgcolor)
 
 
-fullname_entry_rg = tk.Entry(register_contentframe, font=('Verdana',14), width=22)
-username_entry_rg = tk.Entry(register_contentframe, font=('Verdana',14), width=22)
-password_entry_rg = tk.Entry(register_contentframe, font=('Verdana',14), width=22, show='*')
-confirmpass_entry_rg = tk.Entry(register_contentframe, font=('Verdana',14), width=22, show='*')
-phone_entry_rg = tk.Entry(register_contentframe, font=('Verdana',14), width=22)
+
+
+fullname_entry_rg = tk.Entry(register_contentframe, font=('IBM Plex Mono',14), width=22)
+username_entry_rg = tk.Entry(register_contentframe, font=('IBM Plex Mono',14), width=22)
+password_entry_rg = tk.Entry(register_contentframe, font=('IBM Plex Mono',14), width=22, show='*')
+confirmpass_entry_rg = tk.Entry(register_contentframe, font=('IBM Plex Mono',14), width=22, show='*')
+phone_entry_rg = tk.Entry(register_contentframe, font=('IBM Plex Mono',14), width=22)
 
 radiosframe = tk.Frame(register_contentframe)
 gender = StringVar()
 gender.set('Male')
-male_radiobutton = tk.Radiobutton(radiosframe, text='Male', font=('Verdana',14), bg=bgcolor, variable=gender, value='Male')
-female_radiobutton = tk.Radiobutton(radiosframe, text='Female', font=('Verdana',14), bg=bgcolor, variable=gender, value='Female')
+male_radiobutton = tk.Radiobutton(radiosframe, text='Male', font=('IBM Plex Mono',14), bg= bgcolor, variable=gender, value='Male')
+female_radiobutton = tk.Radiobutton(radiosframe, text='Female', font=('IBM Plex Mono',14), bg= bgcolor, variable=gender, value='Female')
 
 
-register_button = tk.Button(register_contentframe,text="Register", font=('Verdana',16), bg='#2980b9',fg='#fff', padx=25, pady=10, width=25)
+register_button = tk.Button(register_contentframe,text="Register", font=('IBM Plex Mono',16), bg='#2980b9',fg='#fff', padx=25, pady=10, width=25)
 
-go_login_label = tk.Label(register_contentframe, text=">> already have an account? sign in" , font=('Verdana',10), bg=bgcolor, fg='red')
+go_login_label = tk.Label(register_contentframe, text=">> already have an account? sign in" , font=('IBM Plex Mono',10), bg= bgcolor, fg='red')
 
 #mainframe.pack(fill='both', expand=1)
 #registerframe.pack(fill='both', expand=1)
