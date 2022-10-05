@@ -48,7 +48,7 @@ headerframe = tk.Frame(root, highlightbackgroun= bgcolor, highlightcolor= bgcolo
 titleframe = tk.Frame(headerframe, bg= oscuro_color, padx=5, pady=5)
 title_label = tk.Label(titleframe, text='SCRUM', padx=100, pady=1, bg= claro_color, fg=tex_oscuro_color, font=('IBM Plex Mono',35), width=8)
 buttonframe = tk.Frame(headerframe, bg= oscuro_color, padx=5, pady=5)
-close_button = tk.Button(buttonframe, text='Salir', font=('IBM Plex Mono',12))
+close_button = tk.Button(buttonframe, text='Quit', font=('IBM Plex Mono',12))
 
 headerframe.pack()
 titleframe.pack()
@@ -116,7 +116,8 @@ def go_to_register():
     loginframe.forget()
     registerframe.pack(fill="both", expand=1)
     title_label['text'] = 'Register'
-    title_label['bg'] = '#27ae60'
+    title_label['bg'] = claro_color
+    title_label['font'] = ('IBM Plex Mono',25)
 
 
 go_register_label.bind("<Button-1>", lambda page: go_to_register())
@@ -148,14 +149,14 @@ login_button['command'] = login
 # ----------- Register Page ------------- #
 
 registerframe = tk.Frame(mainframe, width=w, height=h)
-register_contentframe = tk.Frame(registerframe, padx=15, pady=15, highlightbackgroun= oscuro_color, highlightcolor= oscuro_color, highlightthickness=2, bg= bgcolor)
+register_contentframe = tk.Frame(registerframe, width=w, height=h-100, padx=15, pady=15, highlightbackgroun= oscuro_color, highlightcolor= oscuro_color, highlightthickness=2, bg= bgcolor)
 
-fullname_label_rg = tk.Label(register_contentframe, text='Fullname:', font=('IBM Plex Mono',14), bg= bgcolor)
-username_label_rg = tk.Label(register_contentframe, text='Username:', font=('IBM Plex Mono',14), bg= bgcolor)
-password_label_rg = tk.Label(register_contentframe, text='Password:', font=('IBM Plex Mono',14), bg= bgcolor)
-confirmpass_label_rg = tk.Label(register_contentframe, text='Re-Password:', font=('IBM Plex Mono',14), bg= bgcolor)
-phone_label_rg = tk.Label(register_contentframe, text='Phone:', font=('IBM Plex Mono',14), bg= bgcolor)
-gender_label_rg = tk.Label(register_contentframe, text='Gender:', font=('IBM Plex Mono',14), bg= bgcolor)
+fullname_label_rg = tk.Label(register_contentframe, text='Fullname:', font=('IBM Plex Mono',14), bg= bgcolor,fg = tex_superclaro_color)
+username_label_rg = tk.Label(register_contentframe, text='Username:', font=('IBM Plex Mono',14), bg= bgcolor,fg = tex_superclaro_color)
+password_label_rg = tk.Label(register_contentframe, text='Password:', font=('IBM Plex Mono',14), bg= bgcolor,fg = tex_superclaro_color)
+confirmpass_label_rg = tk.Label(register_contentframe, text='Re-Password:', font=('IBM Plex Mono',14), bg= bgcolor,fg = tex_superclaro_color)
+phone_label_rg = tk.Label(register_contentframe, text='Phone:', font=('IBM Plex Mono',14), bg= bgcolor,fg = tex_superclaro_color)
+gender_label_rg = tk.Label(register_contentframe, text='Gender:', font=('IBM Plex Mono',14), bg= bgcolor,fg = tex_superclaro_color)
 
 
 
@@ -169,11 +170,11 @@ phone_entry_rg = tk.Entry(register_contentframe, font=('IBM Plex Mono',14), widt
 radiosframe = tk.Frame(register_contentframe)
 gender = StringVar()
 gender.set('Male')
-male_radiobutton = tk.Radiobutton(radiosframe, text='Male', font=('IBM Plex Mono',14), bg= bgcolor, variable=gender, value='Male')
-female_radiobutton = tk.Radiobutton(radiosframe, text='Female', font=('IBM Plex Mono',14), bg= bgcolor, variable=gender, value='Female')
+male_radiobutton = tk.Radiobutton(radiosframe, text='Male', font=('IBM Plex Mono',14), bg= bgcolor, variable=gender, value='Male',fg = tex_superclaro_color)
+female_radiobutton = tk.Radiobutton(radiosframe, text='Female', font=('IBM Plex Mono',14), bg= bgcolor, variable=gender, value='Female',fg = tex_superclaro_color)
 
 
-register_button = tk.Button(register_contentframe,text="Register", font=('IBM Plex Mono',16), bg='#2980b9',fg='#fff', padx=25, pady=10, width=25)
+register_button = tk.Button(register_contentframe,text="Register", font=('IBM Plex Mono',14), bg=claro_color,fg=tex_oscuro_color, padx=15, pady=5, width=20)
 
 go_login_label = tk.Label(register_contentframe, text=">> already have an account? sign in" , font=('IBM Plex Mono',10), bg= bgcolor, fg='red')
 
@@ -181,30 +182,31 @@ go_login_label = tk.Label(register_contentframe, text=">> already have an accoun
 #registerframe.pack(fill='both', expand=1)
 register_contentframe.pack(fill='both', expand=1)
 
-fullname_label_rg.grid(row=0, column=0, pady=5, sticky='e')
-fullname_entry_rg.grid(row=0, column=1)
 
-username_label_rg.grid(row=1, column=0, pady=5, sticky='e')
-username_entry_rg.grid(row=1, column=1)
+fullname_label_rg.place(x=440, y=70)
+fullname_entry_rg.place(x=580, y=70)
 
-password_label_rg.grid(row=2, column=0, pady=5, sticky='e')
-password_entry_rg.grid(row=2, column=1)
+username_label_rg.place(x=440, y=130)
+username_entry_rg.place(x=580, y=130)
 
-confirmpass_label_rg.grid(row=3, column=0, pady=5, sticky='e')
-confirmpass_entry_rg.grid(row=3, column=1)
+password_label_rg.place(x=440, y=180)
+password_entry_rg.place(x=580, y=180)
 
-phone_label_rg.grid(row=4, column=0, pady=5, sticky='e')
-phone_entry_rg.grid(row=4, column=1)
+confirmpass_label_rg.place(x=440, y=230)
+confirmpass_entry_rg.place(x=580, y=230)
 
-gender_label_rg.grid(row=5, column=0, pady=5, sticky='e')
-radiosframe.grid(row=5, column=1)
+phone_label_rg.place(x=440, y=280)
+phone_entry_rg.place(x=580, y=280)
+
+gender_label_rg.place(x=440, y=330)
+radiosframe.place(x=625, y=330)
 male_radiobutton.grid(row=0, column=0)
 female_radiobutton.grid(row=0, column=1)
 
 
-register_button.grid(row=7, column=0, columnspan=2, pady=20)
+register_button.place(x=500, y=390)
 
-go_login_label.grid(row=8, column=0, columnspan=2, pady=10)
+go_login_label.place(x=520, y=485)
 
 
 
@@ -215,8 +217,9 @@ go_login_label.grid(row=8, column=0, columnspan=2, pady=10)
 def go_to_login():
     registerframe.forget()
     loginframe.pack(fill="both", expand=1)
-    title_label['text'] = 'Login'
-    title_label['bg'] = '#2980b9'
+    title_label['text'] = 'SCRUM'
+    title_label['bg'] = claro_color
+    title_label['font'] = ('IBM Plex Mono',35)
 
 
 go_login_label.bind("<Button-1>", lambda page: go_to_login())
