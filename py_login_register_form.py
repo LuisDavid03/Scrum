@@ -43,8 +43,8 @@ tex_superclaro_color = "#686C81"
 #   root.geometry("%dx%d+%d+%d" % (w, h, x, y))
 
 # ----------- HEADER ------------- #
-
-headerframe = tk.Frame(root, highlightbackgroun= bgcolor, highlightcolor= bgcolor, highlightthickness=2, bg= bgcolor, width=w, height=100)
+hpeque = 100
+headerframe = tk.Frame(root, highlightbackgroun= bgcolor, highlightcolor= bgcolor, highlightthickness=2, bg= bgcolor, width=w, height=hpeque)
 titleframe = tk.Frame(headerframe, bg= oscuro_color, padx=5, pady=5)
 title_label = tk.Label(titleframe, text='SCRUM', padx=100, pady=1, bg= claro_color, fg=tex_oscuro_color, font=('IBM Plex Mono',35), width=8)
 buttonframe = tk.Frame(headerframe, bg= oscuro_color, padx=5, pady=5)
@@ -70,16 +70,8 @@ mainframe = tk.Frame(root, width=w, height=h)
 
 # ----------- Login Page ------------- #
 
-#69CBBF  Claro
-#39B29D  Oscuro
-#bgcolor  Background
-
-#364388  TEXTO Oscuro (Título)
-#475499  Texto Claaro
-#686C81  Texto Más Claro
-
 loginframe = tk.Frame(mainframe, width=w, height=h)
-login_contentframe = tk.Frame(loginframe, padx=30, pady=100, highlightbackgroun= oscuro_color, highlightcolor= oscuro_color, highlightthickness=2, bg= bgcolor, width=w, height=h-100)
+login_contentframe = tk.Frame(loginframe, padx=30, pady=100, highlightbackgroun= oscuro_color, highlightcolor= oscuro_color, highlightthickness=2, bg= bgcolor, width=w, height=h-hpeque)
 
 username_label = tk.Label(login_contentframe, text='Username:', font=('IBM Plex Mono',16), bg= bgcolor,fg = tex_superclaro_color)
 password_label = tk.Label(login_contentframe, text='Password:', font=('IBM Plex Mono',16), bg= bgcolor,fg = tex_superclaro_color)
@@ -116,7 +108,6 @@ def go_to_register():
     loginframe.forget()
     registerframe.pack(fill="both", expand=1)
     title_label['text'] = 'Register'
-    title_label['bg'] = claro_color
     title_label['font'] = ('IBM Plex Mono',25)
 
 
@@ -127,7 +118,7 @@ go_register_label.bind("<Button-1>", lambda page: go_to_register())
 def login():
     username = username_entry.get().strip()
     password = password_entry.get().strip()
-    vals = (username, password,)
+    vals = (username, password)
     select_query = "SELECT * FROM users WHERE username = %s and password = %s"
     c.execute(select_query, vals)
     user = c.fetchone()
@@ -149,7 +140,7 @@ login_button['command'] = login
 # ----------- Register Page ------------- #
 
 registerframe = tk.Frame(mainframe, width=w, height=h)
-register_contentframe = tk.Frame(registerframe, width=w, height=h-100, padx=15, pady=15, highlightbackgroun= oscuro_color, highlightcolor= oscuro_color, highlightthickness=2, bg= bgcolor)
+register_contentframe = tk.Frame(registerframe, width=w, height=h-hpeque, padx=15, pady=15, highlightbackgroun= oscuro_color, highlightcolor= oscuro_color, highlightthickness=2, bg= bgcolor)
 
 fullname_label_rg = tk.Label(register_contentframe, text='Fullname:', font=('IBM Plex Mono',14), bg= bgcolor,fg = tex_superclaro_color)
 username_label_rg = tk.Label(register_contentframe, text='Username:', font=('IBM Plex Mono',14), bg= bgcolor,fg = tex_superclaro_color)
@@ -218,7 +209,6 @@ def go_to_login():
     registerframe.forget()
     loginframe.pack(fill="both", expand=1)
     title_label['text'] = 'SCRUM'
-    title_label['bg'] = claro_color
     title_label['font'] = ('IBM Plex Mono',35)
 
 
