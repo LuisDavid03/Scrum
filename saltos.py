@@ -2,7 +2,19 @@ import tkinter as tk
 from tkinter import ttk
 
 
-LARGEFONT =("Verdana", 35)
+LARGEFONT = ("IBM Plex mono", 35)
+# width and height
+w = 1280
+h = 720
+# background color
+bgcolor = "#B6D1CE"
+
+oscuro_color = "#39B29D"
+claro_color = "#69CBBF"
+
+tex_oscuro_color = "#364388"
+tex_claro_color = "#475499"
+tex_superclaro_color = "#686C81"
 
 class tkinterApp(tk.Tk):
 	
@@ -108,6 +120,7 @@ class Page1(tk.Frame):
 class Page2(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
+
 		label = ttk.Label(self, text ="Page 2", font = LARGEFONT)
 		label.grid(row = 0, column = 4, padx = 10, pady = 10)
 

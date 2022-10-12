@@ -48,7 +48,7 @@ headerframe = tk.Frame(root, highlightbackgroun= bgcolor, highlightcolor= bgcolo
 titleframe = tk.Frame(headerframe, bg= oscuro_color, padx=5, pady=5)
 title_label = tk.Label(titleframe, text='SCRUM', padx=100, pady=1, bg= claro_color, fg=tex_oscuro_color, font=('IBM Plex Mono',35), width=8)
 buttonframe = tk.Frame(headerframe, bg= oscuro_color, padx=5, pady=5)
-close_button = tk.Button(buttonframe, text='Quit', font=('IBM Plex Mono',12))
+close_button = tk.Button(buttonframe, text='Quit', font=('IBM Plex Mono',10))
 
 headerframe.pack()
 titleframe.pack()
@@ -63,6 +63,8 @@ def close_win():
     root.destroy()
 
 close_button['command'] = close_win
+
+
 
 # ----------- END HEADER ------------- #
 
@@ -128,6 +130,7 @@ def login():
         app = mainform(mainformwindow)
         root.withdraw() # hide the root
         mainformwindow.protocol("WM_DELETE_WINDOW", close_win) # close the app
+        
 
     else:
         messagebox.showwarning('Error','wrong username or password')
@@ -265,12 +268,4 @@ register_button['command'] = register
 
 # ------------------------------------------------------------------------ #
 
-
-
-
-
-
 root.mainloop()
-
-
-ñl=0

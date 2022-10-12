@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 
 
-LARGEFONT =("Verdana", 35)
+LARGEFONT =("IBM Plex Mono", 35)
 
 class tkinterApp(tk.Tk):
 	
