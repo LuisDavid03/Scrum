@@ -2,8 +2,18 @@
 import tkinter as tk
 from tkinter import *
 
-w = 1200
-h = 650
+# width and height
+w = 1280
+h = 720
+# background color
+bgcolor = "#B6D1CE"
+
+oscuro_color = "#39B29D"
+claro_color = "#69CBBF"
+
+tex_oscuro_color = "#364388"
+tex_claro_color = "#475499"
+tex_superclaro_color = "#686C81"
 
 class mainform:
     def __init__(self, master):
@@ -34,9 +44,12 @@ class mainform:
         self.menubar.add_cascade(menu=self.categories, label="Category")
 
         self.frame.pack()
+        
 
         # ------------------------------ #
 
         self.master.config(menu=self.menubar, bg="#ecf0f1")
-        self.lbl = tk.Label(self.master, text='Main Form', font=('verdana',50, 'bold'), fg='#2A2C2B',bg="#ecf0f1")
+        self.lbl = tk.Button(self.master, text='Form', font=('IBM Plex Mono',45, 'bold'), fg=tex_oscuro_color,bg=bgcolor)
         self.lbl.place(rely=0.5, relx=0.5, anchor=CENTER)
+
+        self.lbl.pack()

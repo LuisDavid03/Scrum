@@ -1,6 +1,7 @@
 import tkinter as tk 
 from tkinter import *
 from tkinter.ttk import *
+from py_mainform import *
 #import mysql.connector
 
 root = Tk()
@@ -10,13 +11,12 @@ root.title("Scrum")
 def close_win():
     root.destroy()
 
+def destroy_mainform():
+    root.destroy()
+    mainform()
+
+
 class mainform:
-    
-    root = Tk()
-    root.title("Scrum")
-        # close window
-    def close_win():
-        root.destroy()
 
     # width and height
     w = 1280
@@ -35,7 +35,7 @@ class mainform:
     mainframe = tk.Frame(root,bg=bgcolor, width=w, height=h)
 
     frame_titulo = tk.Frame(mainframe,bg= oscuro_color, padx=8, pady=8)
-    label_titulo = tk.Label(frame_titulo, text='Homepage', padx=100, pady=1, bg= claro_color, fg=tex_oscuro_color, font=('IBM Plex Mono',25))
+    label_titulo = tk.Label(frame_titulo, text='Homepage', padx=100, pady=1, bg= claro_color, fg=tex_oscuro_color, font=('IBM Plex Mono',35))
     frame_quit = tk.Frame(mainframe, bg= oscuro_color, padx=5, pady=5)
     button_quit = tk.Button(frame_quit, text='Quit', font=('IBM Plex Mono',10))
     frame_proyectos = tk.Frame(mainframe, bg= oscuro_color, padx=4, pady=4)
@@ -46,6 +46,7 @@ class mainform:
 
 
     button_quit['command'] = close_win
+    button_proyectos['command'] = destroy_mainform
 
     mainframe.pack()
     frame_titulo.pack()
