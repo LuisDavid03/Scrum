@@ -12,9 +12,9 @@ rootSB.title("Scrum")
 def close_win():
     rootSB.destroy()
 
-def destroy_mainformSB():
-    rootSB.destroy()
-    mainform()
+#def destroy_mainformSB():
+#    rootSB.destroy()
+#    mainform()
 
 
 class mainformSB:
@@ -50,7 +50,7 @@ class mainformSB:
 
 
     button_quit['command'] = close_win
-    button_in_progress['command'] = destroy_mainformSB
+    #button_in_progress['command'] = destroy_mainformSB
 
     mainframe.pack()
     frame_titulo.pack()
