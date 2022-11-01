@@ -1,6 +1,7 @@
 import tkinter as tk 
 from tkinter import *
 from tkinter.ttk import *
+from InProgress import mainformIP
 from py_mainform import *
 #import mysql.connector
 
@@ -11,12 +12,7 @@ root.title("Scrum")
 def close_win():
     root.destroy()
 
-def destroy_mainform():
-    root.destroy()
-    mainform()
-
-
-class mainform:
+class mainformhomepage:
 
     # width and height
     w = 1280
@@ -46,7 +42,6 @@ class mainform:
 
 
     button_quit['command'] = close_win
-    button_proyectos['command'] = destroy_mainform
 
     mainframe.pack()
     frame_titulo.pack()

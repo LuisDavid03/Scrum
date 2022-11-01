@@ -2,7 +2,6 @@ from struct import pack
 import tkinter as tk 
 from tkinter import *
 from tkinter.ttk import *
-from py_mainform import *
 #import mysql.connector
 
 rootIP = Tk()
@@ -11,10 +10,6 @@ rootIP.title("Scrum")
     # close window
 def close_win():
     rootIP.destroy()
-
-def destroy_mainformIP():
-    rootIP.destroy()
-    mainform()
 
 
 class mainformIP:

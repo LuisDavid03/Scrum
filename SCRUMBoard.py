@@ -2,7 +2,7 @@ from struct import pack
 import tkinter as tk 
 from tkinter import *
 from tkinter.ttk import *
-from py_mainform import *
+
 #import mysql.connector
 
 rootSB = Tk()

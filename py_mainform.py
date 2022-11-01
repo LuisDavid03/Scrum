@@ -48,8 +48,9 @@ class mainform:
 
         # ------------------------------ #
 
+
         self.master.config(menu=self.menubar, bg="#ecf0f1")
-        self.lbl = tk.Button(self.master, text='Form', font=('IBM Plex Mono',45, 'bold'), fg=tex_oscuro_color,bg=bgcolor)
+        self.lbl = tk.Button(self.master, text='Next', font=('IBM Plex Mono',45, 'bold'), fg=tex_oscuro_color,bg=bgcolor)
         self.lbl.place(rely=0.5, relx=0.5, anchor=CENTER)
 
         self.lbl.pack()

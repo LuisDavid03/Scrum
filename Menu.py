@@ -2,7 +2,7 @@ from struct import pack
 import tkinter as tk 
 from tkinter import *
 from tkinter.ttk import *
-from py_mainform import *
+
 #import mysql.connector
 
 rootIP = Tk()
@@ -12,11 +12,8 @@ rootIP.title("Scrum")
 def close_win():
     rootIP.destroy()
 
-def destroy_mainformIP():
-    rootIP.destroy()
-    mainformIP()
 
-class mainformIP:
+class mainformMENU:
 
     # width and height
     w = 1280
@@ -52,6 +49,7 @@ class mainformIP:
     button_SRCUMBoard = tk.Button(frame_SCRUMBoard, text='SCRUM BOARD', pady= 15, font=('IBM Plex Mono', 23), fg=tex_claro_color, bg=claro_color)
     frame_LogOut = tk.Frame(mainframe, bg= oscuro_color, padx=4, pady=4)
     button_LogOut = tk.Button(frame_LogOut, text='Log out', pady= 15,padx=66, font=('IBM Plex Mono', 23), fg=tex_claro_color, bg=claro_color)
+
 
     button_quit['command'] = close_win
 
