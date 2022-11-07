@@ -12,7 +12,7 @@ root.title("Scrum")
 def close_win():
     root.destroy()
 
-class mainformhomepage:
+class homepage:
 
     # width and height
     w = 1280

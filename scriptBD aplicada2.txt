@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS public.usuarios 
+(
+	document integer NOT NULL,
+	password character varying(40) NOT NULL,
+	fullname character varying(40) NOT NULL,
+	username character varying(40) NOT NULL,
+	gender character varying(40) NOT NULL,
+	phone character varying(40) NOT NULL,
+	email character varying(40) NOT NULL,
+	surname character varying(40) NOT NULL,
+	CONSTRAINT USUARIOS_PK PRIMARY KEY (document)
+);
+
+CREATE TABLE IF NOT EXISTS public.Proyectos
+(
+	document integer NOT NULL,
+	Proyect character varying(40) NOT NULL,
+	ProyID integer NOT NULL
+);
+
+
+ALTER TABLE public.Proyectos ADD CONSTRAINT Proyectos_fk0 FOREIGN KEY (document) REFERENCES public.Usuarios(document);
