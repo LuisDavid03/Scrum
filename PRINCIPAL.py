@@ -11,7 +11,7 @@ from tkinter import messagebox
 #import mysql.connector
 import psycopg2
 #import proyectos
-
+username2='e'
 root = Tk()
 #connection = mysql.connector.connect(host='localhost', user='root', port='3306', password='', database='py_lg_rg_db')
 #conexion = psycopg2.connect(host='localhost',database='aplicada', user='postgresql', password='Martin123')
@@ -134,6 +134,7 @@ go_register_label.bind("<Button-1>", lambda page: go_to_register())
 def login():
     username = username_entry.get().strip()
     password = password_entry.get().strip()
+    globals()['username2'] = username
     vals = (username, password,)
     select_query = "SELECT * FROM usuarios WHERE username = %s and password = %s" #antes users
     c.execute(select_query, vals)
@@ -162,7 +163,7 @@ fullname_label_rg = tk.Label(register_contentframe, text='Fullname:', font=('IBM
 username_label_rg = tk.Label(register_contentframe, text='Username:', font=('IBM Plex Mono',14), bg= bgcolor,fg = tex_superclaro_color)
 password_label_rg = tk.Label(register_contentframe, text='Password:', font=('IBM Plex Mono',14), bg= bgcolor,fg = tex_superclaro_color)
 confirmpass_label_rg = tk.Label(register_contentframe, text='Re-Password:', font=('IBM Plex Mono',14), bg= bgcolor,fg = tex_superclaro_color)
-phone_label_rg = tk.Label(register_contentframe, text='Phone:', font=('IBM Plex Mono',14), bg= bgcolor,fg = tex_superclaro_color)
+document_label_rg = tk.Label(register_contentframe, text='Document:', font=('IBM Plex Mono',14), bg= bgcolor,fg = tex_superclaro_color)
 gender_label_rg = tk.Label(register_contentframe, text='Gender:', font=('IBM Plex Mono',14), bg= bgcolor,fg = tex_superclaro_color)
 
 
@@ -172,7 +173,7 @@ fullname_entry_rg = tk.Entry(register_contentframe, font=('IBM Plex Mono',14), w
 username_entry_rg = tk.Entry(register_contentframe, font=('IBM Plex Mono',14), width=22)
 password_entry_rg = tk.Entry(register_contentframe, font=('IBM Plex Mono',14), width=22, show='*')
 confirmpass_entry_rg = tk.Entry(register_contentframe, font=('IBM Plex Mono',14), width=22, show='*')
-phone_entry_rg = tk.Entry(register_contentframe, font=('IBM Plex Mono',14), width=22)
+document_entry_rg = tk.Entry(register_contentframe, font=('IBM Plex Mono',14), width=22)
 
 radiosframe = tk.Frame(register_contentframe)
 gender = StringVar()
@@ -202,8 +203,8 @@ password_entry_rg.place(x=580, y=180)
 confirmpass_label_rg.place(x=440, y=230)
 confirmpass_entry_rg.place(x=580, y=230)
 
-phone_label_rg.place(x=440, y=280)
-phone_entry_rg.place(x=580, y=280)
+document_label_rg.place(x=440, y=280)
+document_entry_rg.place(x=580, y=280)
 
 gender_label_rg.place(x=440, y=330)
 radiosframe.place(x=625, y=330)
@@ -253,16 +254,16 @@ def register():
     username = username_entry_rg.get().strip()
     password = password_entry_rg.get().strip()
     confirm_password = confirmpass_entry_rg.get().strip()
-    phone = phone_entry_rg.get().strip()
+    document = document_entry_rg.get().strip()
     gdr = gender.get()
     
     
 
-    if len(fullname) > 0 and  len(username) > 0 and len(password) > 0 and len(phone) > 0:
+    if len(fullname) > 0 and  len(username) > 0 and len(password) > 0 and len(document) > 0:
         if check_username(username) == False: 
             if password == confirm_password:
-                vals = (fullname, username, password, phone, gdr)
-                insert_query = "INSERT INTO users(fullname, username, password, phone, gender) VALUES (%s,%s,%s,%s,%s)"
+                vals = (fullname, username, password, document, gdr)
+                insert_query = "INSERT INTO users(fullname, username, password, document, gender) VALUES (%s,%s,%s,%s,%s)"
                 c.execute(insert_query, vals)
                 connection.commit()
                 messagebox.showinfo('Register','your account has been created successfully')
@@ -602,10 +603,46 @@ class todo:
             self.master.withdraw()
             app = menu(scrumwindow)
         self.scc['command'] = GoToMenu
+        # --------------------------------------------------------------------------------------------------------------------------
+
+        consulta2 = c.rowcount
+        print(consulta2, "Record inserted successfully into mobile table")
+
+
+        sql_select_query2 = "select * from usuarios where username = %s"
+        #c.execute(sql_select_query)
+        #ecm="ecm"
+        print(username2)
+        ecm=username2    
+        #nombre=username
+        c.execute(sql_select_query2,(ecm,))
+        prueba = c.fetchone()
+        print(prueba)
+
+        sql_select_query3 = "select document from usuarios where username = %s"
+        #c.execute(sql_select_query)
+        #ecm="ecm"
+        #print(username2)   
+        #nombre=username
+        c.execute(sql_select_query3,(username2,))
+        record = c.fetchone()
+        print(record)
+        documento2 = record
+
+        sql_select_query3 = "select proyect from proyectos where document = %s"
+        #c.execute(sql_select_query)
+        #ecm="ecm"
+        #print(username2)   
+        #nombre=username
+        c.execute(sql_select_query3,(documento2,))
+        record2 = c.fetchone()
+        print(record2)
+
+        # --------------------------------------------------------------------------------------------------------------------------
 
         # ------- TITULO -------- #
 
-        self.PY3Cua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightthickness=2, bg=claro_color, width=450, height=110)
+        self.PY3Cua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightthickness=2, bg=claro_color, width=600, height=110)
         self.PY3frame = tk.Frame (self.PY3Cua, bg=oscuro_color, padx=5, pady=5)
         self.PY3 = tk.Label (self.PY3frame, text= 'To Do ', padx=50, pady=5, fg=tex_oscuro_color, font=('IBM Plex Mono',35), width=10,bg = claro_color)
         self.PY3Cua.pack()
@@ -613,6 +650,16 @@ class todo:
         self.PY3.pack()
         self.PY3Cua.place(rely=0.1, relx=0.5, anchor=CENTER)
         self.PY3frame.place(rely=0.5, relx=0.5, anchor=CENTER)
+
+
+        self.LabelFrame = tk.Frame (self.master, bg=oscuro_color, padx=5, pady=5)
+        self.Label_DB = tk.Label (self.LabelFrame, text=(record2), padx=100, pady=5, fg=tex_oscuro_color, font=('IBM Plex Mono',25), width=10,bg = claro_color)
+        self.LabelFrame.pack()
+        self.Label_DB.pack()
+        self.LabelFrame.place(rely=0.5, relx=0.5, anchor=CENTER)
+
+       
+        
 
 class progress:
 
@@ -650,7 +697,7 @@ class progress:
 
         self.PY3Cua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightthickness=2, bg=claro_color, width=450, height=110)
         self.PY3frame = tk.Frame (self.PY3Cua, bg=oscuro_color, padx=5, pady=5)
-        self.PY3 = tk.Label (self.PY3frame, text= 'To Do ', padx=50, pady=5, fg=tex_oscuro_color, font=('IBM Plex Mono',35), width=10,bg = claro_color)
+        self.PY3 = tk.Label (self.PY3frame, text= 'In Progress ', padx=50, pady=5, fg=tex_oscuro_color, font=('IBM Plex Mono',35), width=10,bg = claro_color)
         self.PY3Cua.pack()
         self.PY3frame.pack()
         self.PY3.pack()
@@ -693,7 +740,7 @@ class done:
 
         self.PY3Cua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightthickness=2, bg=claro_color, width=450, height=110)
         self.PY3frame = tk.Frame (self.PY3Cua, bg=oscuro_color, padx=5, pady=5)
-        self.PY3 = tk.Label (self.PY3frame, text= 'To Do ', padx=50, pady=5, fg=tex_oscuro_color, font=('IBM Plex Mono',35), width=10,bg = claro_color)
+        self.PY3 = tk.Label (self.PY3frame, text= 'Done', padx=50, pady=5, fg=tex_oscuro_color, font=('IBM Plex Mono',35), width=10,bg = claro_color)
         self.PY3Cua.pack()
         self.PY3frame.pack()
         self.PY3.pack()
