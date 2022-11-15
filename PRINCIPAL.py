@@ -11,10 +11,13 @@ from tkinter import messagebox
 #import mysql.connector
 import psycopg2
 #import proyectos
+llamadoTODO=' '
+llamadoINPROGRESS=' '
+llamadoDONE=' '
+
 username2='e'
 root = Tk()
-#connection = mysql.connector.connect(host='localhost', user='root', port='3306', password='', database='py_lg_rg_db')
-#conexion = psycopg2.connect(host='localhost',database='aplicada', user='postgresql', password='Martin123')
+
 connection = psycopg2.connect(
         host='localhost',
         user='postgres',
@@ -176,7 +179,7 @@ confirmpass_entry_rg = tk.Entry(register_contentframe, font=('IBM Plex Mono',14)
 document_entry_rg = tk.Entry(register_contentframe, font=('IBM Plex Mono',14), width=22)
 
 radiosframe = tk.Frame(register_contentframe)
-gender = StringVar()
+gender = StringVar()    
 gender.set('Male')
 male_radiobutton = tk.Radiobutton(radiosframe, text='Male', font=('IBM Plex Mono',14), bg= bgcolor, variable=gender, value='Male',fg = tex_superclaro_color)
 female_radiobutton = tk.Radiobutton(radiosframe, text='Female', font=('IBM Plex Mono',14), bg= bgcolor, variable=gender, value='Female',fg = tex_superclaro_color)
@@ -564,13 +567,148 @@ class menu:
             self.master.destroy()
             app = done(scrumwindow)
         
-        self.Button_Done['command'] = GoToToDo
+        self.Button_Done['command'] = GoToDone
 
         def GoToScrumBoard():
             scrumwindow = tk.Toplevel()
             self.master.withdraw()
             app = sb(scrumwindow)
         self.Button_ScumBoard['command'] = GoToScrumBoard
+
+
+def buscartabla1():
+    sql_select_query3 = "select document from usuarios where username = %s"
+    c.execute(sql_select_query3,(username2,))
+    record = c.fetchone()
+    print(record)
+    documento2 = record
+
+    sql_select_query3 = "select proyid from proyectos where document = %s"
+    c.execute(sql_select_query3,(documento2,))
+    ooo = c.fetchone()
+    print(ooo)
+
+    hola = "select state from userstories where proyid = %s"
+    c.execute(hola,(ooo,))
+    ppp = c.fetchone()
+    print(ppp)
+
+    hola = "select name from userstories where state = %s"
+    c.execute(hola,(1,))
+    record2 = c.fetchone()
+
+    return record2
+
+def buscartabla2():
+    sql_select_query3 = "select document from usuarios where username = %s"
+    c.execute(sql_select_query3,(username2,))
+    record = c.fetchone()
+    print(record)
+    documento2 = record
+
+    sql_select_query3 = "select proyid from proyectos where document = %s"
+    c.execute(sql_select_query3,(documento2,))
+    ooo = c.fetchone()
+    print(ooo)
+
+    hola = "select state from userstories where proyid = %s"
+    c.execute(hola,(ooo,))
+    ppp = c.fetchone()
+    print(ppp)
+
+    hola = "select name from userstories where state = %s"
+    c.execute(hola,(2,))
+    record2 = c.fetchone()
+
+    return record2
+
+def buscartabla3():
+    sql_select_query3 = "select document from usuarios where username = %s"
+    c.execute(sql_select_query3,(username2,))
+    record = c.fetchone()
+    print(record)
+    documento2 = record
+
+    sql_select_query3 = "select proyid from proyectos where document = %s"
+    c.execute(sql_select_query3,(documento2,))
+    ooo = c.fetchone()
+    print(ooo)
+
+    hola = "select state from userstories where proyid = %s"
+    c.execute(hola,(ooo,))
+    ppp = c.fetchone()
+    print(ppp)
+
+    hola = "select name from userstories where state = %s"
+    c.execute(hola,(3,))
+    record2 = c.fetchone()
+
+    return record2
+    ###################################################################################################################################
+
+
+
+def value_state1():
+    sql_select_query3 = "select document from usuarios where username = %s"
+    c.execute(sql_select_query3,(username2,))
+    fff = c.fetchone()
+    print(fff)
+
+    sql_select_query4 = "select proyid from proyectos where document = %s"
+    c.execute(sql_select_query4,(fff,))
+    ggg = c.fetchone()
+    print(ggg)
+    hola = "select state from userstories where proyid = %s and state = %s"
+    c.execute(hola,(ggg,1,))
+    ppp = c.fetchone()
+    print(ppp)
+
+    rrr = ''.join(str(ppp))
+
+    print(rrr)
+    return rrr
+
+def value_state2():
+    sql_select_query3 = "select document from usuarios where username = %s"
+    c.execute(sql_select_query3,(username2,))
+    fff = c.fetchone()
+    print(fff)
+
+    sql_select_query4 = "select proyid from proyectos where document = %s"
+    c.execute(sql_select_query4,(fff,))
+    ggg = c.fetchone()
+    print(ggg)
+    hola = "select state from userstories where proyid = %s and state = %s"
+    c.execute(hola,(ggg,2,))
+    ppp = c.fetchone()
+    print(ppp)
+
+    rrr = ''.join(str(ppp))
+
+    print(rrr)
+    return rrr
+
+def value_state3():
+    sql_select_query3 = "select document from usuarios where username = %s"
+    c.execute(sql_select_query3,(username2,))
+    fff = c.fetchone()
+    print(fff)
+
+    sql_select_query4 = "select proyid from proyectos where document = %s"
+    c.execute(sql_select_query4,(fff,))
+    ggg = c.fetchone()
+    print(ggg)
+    hola = "select state from userstories where proyid = %s and state = %s"
+    c.execute(hola,(ggg,3,))
+    ppp = c.fetchone()
+    print(ppp)
+
+    rrr = ''.join(str(ppp))
+
+    print(rrr)
+    return rrr
+
+
 
 class todo:
 
@@ -605,41 +743,8 @@ class todo:
         self.scc['command'] = GoToMenu
         # --------------------------------------------------------------------------------------------------------------------------
 
-        consulta2 = c.rowcount
-        print(consulta2, "Record inserted successfully into mobile table")
-
-
-        sql_select_query2 = "select * from usuarios where username = %s"
-        #c.execute(sql_select_query)
-        #ecm="ecm"
-        print(username2)
-        ecm=username2    
-        #nombre=username
-        c.execute(sql_select_query2,(ecm,))
-        prueba = c.fetchone()
-        print(prueba)
-
-        sql_select_query3 = "select document from usuarios where username = %s"
-        #c.execute(sql_select_query)
-        #ecm="ecm"
-        #print(username2)   
-        #nombre=username
-        c.execute(sql_select_query3,(username2,))
-        record = c.fetchone()
-        print(record)
-        documento2 = record
-
-        sql_select_query3 = "select proyect from proyectos where document = %s"
-        #c.execute(sql_select_query)
-        #ecm="ecm"
-        #print(username2)   
-        #nombre=username
-        c.execute(sql_select_query3,(documento2,))
-        record2 = c.fetchone()
-        print(record2)
-
-        # --------------------------------------------------------------------------------------------------------------------------
-
+        if value_state1() == "(1,)":
+            globals()['llamadoTODO'] = buscartabla1()
         # ------- TITULO -------- #
 
         self.PY3Cua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightthickness=2, bg=claro_color, width=600, height=110)
@@ -651,17 +756,14 @@ class todo:
         self.PY3Cua.place(rely=0.1, relx=0.5, anchor=CENTER)
         self.PY3frame.place(rely=0.5, relx=0.5, anchor=CENTER)
 
-
         self.LabelFrame = tk.Frame (self.master, bg=oscuro_color, padx=5, pady=5)
-        self.Label_DB = tk.Label (self.LabelFrame, text=(record2), padx=100, pady=5, fg=tex_oscuro_color, font=('IBM Plex Mono',25), width=10,bg = claro_color)
+        self.Label_DB = tk.Label (self.LabelFrame, text= '\n'.join(''.join(map(str, tup)) for tup in globals()['llamadoTODO']), padx=100, pady=5, fg=tex_oscuro_color, font=('IBM Plex Mono',25), width=10,bg = claro_color)
         self.LabelFrame.pack()
         self.Label_DB.pack()
-        self.LabelFrame.place(rely=0.5, relx=0.5, anchor=CENTER)
-
-       
-        
+        self.LabelFrame.place(rely=0.5, relx=0.5, anchor=CENTER)        
 
 class progress:
+
 
     def __init__(self, master):
         
@@ -692,10 +794,12 @@ class progress:
             self.master.withdraw()
             app = menu(scrumwindow)
         self.scc['command'] = GoToMenu
-
+        # --------------------------------------------------------------------------------------------------------------------------
+        if value_state2() == "(2,)":
+            globals()['llamadoINPROGRESS'] = buscartabla2()
         # ------- TITULO -------- #
 
-        self.PY3Cua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightthickness=2, bg=claro_color, width=450, height=110)
+        self.PY3Cua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightthickness=2, bg=claro_color, width=600, height=110)
         self.PY3frame = tk.Frame (self.PY3Cua, bg=oscuro_color, padx=5, pady=5)
         self.PY3 = tk.Label (self.PY3frame, text= 'In Progress ', padx=50, pady=5, fg=tex_oscuro_color, font=('IBM Plex Mono',35), width=10,bg = claro_color)
         self.PY3Cua.pack()
@@ -703,6 +807,13 @@ class progress:
         self.PY3.pack()
         self.PY3Cua.place(rely=0.1, relx=0.5, anchor=CENTER)
         self.PY3frame.place(rely=0.5, relx=0.5, anchor=CENTER)
+
+
+        self.LabelFrame = tk.Frame (self.master, bg=oscuro_color, padx=5, pady=5)
+        self.Label_DB = tk.Label (self.LabelFrame,  text= '\n'.join(''.join(map(str, tup)) for tup in globals()['llamadoINPROGRESS']), padx=100, pady=5, fg=tex_oscuro_color, font=('IBM Plex Mono',25), width=10,bg = claro_color)
+        self.LabelFrame.pack()
+        self.Label_DB.pack()
+        self.LabelFrame.place(rely=0.5, relx=0.5, anchor=CENTER)        
 
 class done:
 
@@ -735,17 +846,26 @@ class done:
             self.master.withdraw()
             app = menu(scrumwindow)
         self.scc['command'] = GoToMenu
-
+        # --------------------------------------------------------------------------------------------------------------------------
+        if value_state3() == "(3,)":
+            globals()['llamadoDONE'] = buscartabla3()
         # ------- TITULO -------- #
 
-        self.PY3Cua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightthickness=2, bg=claro_color, width=450, height=110)
+        self.PY3Cua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightthickness=2, bg=claro_color, width=600, height=110)
         self.PY3frame = tk.Frame (self.PY3Cua, bg=oscuro_color, padx=5, pady=5)
-        self.PY3 = tk.Label (self.PY3frame, text= 'Done', padx=50, pady=5, fg=tex_oscuro_color, font=('IBM Plex Mono',35), width=10,bg = claro_color)
+        self.PY3 = tk.Label (self.PY3frame, text= 'Done ', padx=50, pady=5, fg=tex_oscuro_color, font=('IBM Plex Mono',35), width=10,bg = claro_color)
         self.PY3Cua.pack()
         self.PY3frame.pack()
         self.PY3.pack()
         self.PY3Cua.place(rely=0.1, relx=0.5, anchor=CENTER)
         self.PY3frame.place(rely=0.5, relx=0.5, anchor=CENTER)
+
+
+        self.LabelFrame = tk.Frame (self.master, bg=oscuro_color, padx=5, pady=5)
+        self.Label_DB = tk.Label (self.LabelFrame,  text= '\n'.join(''.join(map(str, tup)) for tup in globals()['llamadoDONE']), padx=100, pady=5, fg=tex_oscuro_color, font=('IBM Plex Mono',25), width=10,bg = claro_color)
+        self.LabelFrame.pack()
+        self.Label_DB.pack()
+        self.LabelFrame.place(rely=0.5, relx=0.5, anchor=CENTER)        
 
 
 
