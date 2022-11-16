@@ -348,12 +348,113 @@ class proyectos:
             scrumwindow = tk.Toplevel()
             self.master.withdraw()
             app = sb(scrumwindow)
+
+        def saltocrear():
+            scrumwindow = tk.Toplevel()
+            self.master.withdraw()
+            app = crear(scrumwindow)
     
 
         
         self.PY1['command'] = scrumsalto
-        self.PY2['command'] = scrumsalto
+        self.PY2['command'] = saltocrear
 
+class crear:
+
+    def __init__(self, master):
+        
+        self.master = master
+        w = self.master.winfo_screenwidth()-150
+        h = self.master.winfo_screenheight()-170
+        # ----------- CENTER FORM ------------- #
+        ws = self.master.winfo_screenwidth()
+        hs = self.master.winfo_screenheight()
+        x = (ws-w)/2
+        y = (hs-h)/2
+        self.master.geometry("%dx%d+%d+%d" % (w, h, x, y))
+
+        self.master.config(bg=bgcolor)
+        self.sc = tk.Button (self.master, text= 'Quit', padx=2, pady=1, fg=tex_oscuro_color, font=('IBM Plex Mono',10))
+        self.sc.pack()
+        self.sc.place(rely=0.04, relx=0.95, anchor=CENTER)
+        def close_win():
+            root.destroy()
+        self.sc['command'] = close_win
+
+        self.master.config(bg=bgcolor)
+        self.scc = tk.Button (self.master, text= 'Menú', padx=2, pady=1, fg=tex_oscuro_color, font=('IBM Plex Mono',10))
+        self.scc.pack()
+        self.scc.place(rely=0.04, relx=0.06, anchor=CENTER)
+        def GoToMenu():
+            scrumwindow = tk.Toplevel()
+            self.master.withdraw()
+            app = menu(scrumwindow)
+        self.scc['command'] = GoToMenu
+        # --------------------------------------------------------------------------------------------------------------------------
+
+        if value_state1() == "(1,)":
+            globals()['llamadoTODO'] = buscartabla1()
+        # ------- TITULO -------- #
+
+        self.PY3Cua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightthickness=2, bg=claro_color, width=600, height=110)
+        self.PY3frame = tk.Frame (self.PY3Cua, bg=oscuro_color, padx=5, pady=5)
+        self.PY3 = tk.Label (self.PY3frame, text= 'Ingresar', padx=50, pady=5, fg=tex_oscuro_color, font=('IBM Plex Mono',35), width=10,bg = claro_color)
+        self.PY3Cua.pack()
+        self.PY3frame.pack()
+        self.PY3.pack()
+        self.PY3Cua.place(rely=0.1, relx=0.5, anchor=CENTER)
+        self.PY3frame.place(rely=0.5, relx=0.5, anchor=CENTER)
+        # ------------------------ PROYID---------------------
+        self.LabelFrame_ProyId = tk.Frame (self.master, bg=oscuro_color, padx=5, pady=5)
+        self.Label_Proyid = tk.Label (self.LabelFrame_ProyId, text= 'ProyID', padx=50, pady=5, fg=tex_claro_color, font=('IBM Plex Mono',15), width=10,bg = claro_color)
+        self.LabelFrame_ProyId.pack()
+        self.Label_Proyid.pack()
+        self.LabelFrame_ProyId.place(rely=0.50, relx=0.25, anchor=CENTER)
+
+
+        self.LabelFrame = tk.Frame (self.master, bg=oscuro_color, padx=5, pady=5)
+        self.Entry_Proyid = tk.Entry(self.LabelFrame, font=('IBM Plex Mono',14), width=22)
+        self.LabelFrame.pack()
+        self.Entry_Proyid.pack()
+        self.LabelFrame.place(rely=0.45, relx=0.25, anchor=CENTER)
+
+        # ------------------------ NAME---------------------
+
+        self.LabelFrame_name = tk.Frame (self.master, bg=oscuro_color, padx=5, pady=5)
+        self.Label_Proyid = tk.Label (self.LabelFrame_name, text= 'Name', padx=50, pady=5, fg=tex_claro_color, font=('IBM Plex Mono',15), width=10,bg = claro_color)
+        self.LabelFrame_name.pack()
+        self.Label_Proyid.pack()
+        self.LabelFrame_name.place(rely=0.50, relx=0.5, anchor=CENTER)
+
+        self.LabelFrame1 = tk.Frame (self.master, bg=oscuro_color, padx=5, pady=5)
+        self.Entry_name = tk.Entry(self.LabelFrame1, font=('IBM Plex Mono',14), width=22)
+        self.LabelFrame1.pack()
+        self.Entry_name.pack()
+        self.LabelFrame1.place(rely=0.45, relx=0.5, anchor=CENTER)
+
+        #----------------------------STATE--------------------------
+
+        self.LabelFrame_state = tk.Frame (self.master, bg=oscuro_color, padx=5, pady=5)
+        self.Label_Proyid = tk.Label (self.LabelFrame_state, text= 'State', padx=50, pady=5, fg=tex_claro_color, font=('IBM Plex Mono',15), width=10,bg = claro_color)
+        self.LabelFrame_state.pack()
+        self.Label_Proyid.pack()
+        self.LabelFrame_state.place(rely=0.50, relx=0.75, anchor=CENTER)
+
+        self.LabelFrame2 = tk.Frame (self.master, bg=oscuro_color, padx=5, pady=5)
+        self.Entry_state = tk.Entry(self.LabelFrame2, font=('IBM Plex Mono',14), width=22)
+        self.LabelFrame2.pack()
+        self.Entry_state.pack()
+        self.LabelFrame2.place(rely=0.45, relx=0.75, anchor=CENTER)    
+
+        #-------------------------------BOTON----------------------------------
+        self.PY2Cua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightcolor=claro_color, highlightthickness=2, bg=claro_color, width=320, height=100)
+        self.PY2frame = tk.Frame (self.PY2Cua, bg=oscuro_color, padx=5, pady=5)
+        self.Button_InProgress = tk.Button (self.PY2frame, text= 'Crear', padx=50, pady=5, font=('IBM Plex Mono',23), fg=tex_claro_color, bg=claro_color, width=10)
+        self.PY2Cua.pack()
+        self.PY2frame.pack()
+        self.Button_InProgress.pack()
+        self.PY2Cua.place(rely=0.7, relx=0.5, anchor=CENTER)
+        self.PY2frame.place(rely=0.5, relx=0.5, anchor=CENTER)    
 
 class sb:
 
@@ -500,7 +601,7 @@ class menu:
         self.PY1Cua.pack()
         self.PY1frame.pack()
         self.Button_ToDo.pack()
-        self.PY1Cua.place(rely=0.4, relx=0.333, anchor=CENTER)
+        self.PY1Cua.place(rely=0.4, relx=0.22, anchor=CENTER)
         self.PY1frame.place(rely=0.5, relx=0.5, anchor=CENTER)
 
         # ------- IN PROGRESS --------- #
@@ -511,7 +612,7 @@ class menu:
         self.PY2Cua.pack()
         self.PY2frame.pack()
         self.Button_InProgress.pack()
-        self.PY2Cua.place(rely=0.4, relx=0.666, anchor=CENTER)
+        self.PY2Cua.place(rely=0.4, relx=0.5, anchor=CENTER)
         self.PY2frame.place(rely=0.5, relx=0.5, anchor=CENTER)
 
                 # ------- DONE --------- #
@@ -522,7 +623,7 @@ class menu:
         self.PYNCua.pack()
         self.PYNframe.pack()
         self.Button_Done.pack()
-        self.PYNCua.place(rely=0.75, relx=0.333, anchor=CENTER)
+        self.PYNCua.place(rely=0.4, relx=0.78, anchor=CENTER)
         self.PYNframe.place(rely=0.5, relx=0.5, anchor=CENTER)
 
                         # ------- SCRUMBOARD --------- #
@@ -533,11 +634,22 @@ class menu:
         self.PYNNCua.pack()
         self.PYNNframe.pack()
         self.Button_ScumBoard.pack()
-        self.PYNNCua.place(rely=0.75, relx=0.666, anchor=CENTER)
+        self.PYNNCua.place(rely=0.75, relx=0.333, anchor=CENTER)
         self.PYNNframe.place(rely=0.5, relx=0.5, anchor=CENTER)
 
+        #----------------------------------------------------------------------------------------------------------------------------------------------
 
-        # ------- TITULO -------- #
+        self.PYRRCua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightcolor=claro_color, highlightthickness=2, bg=claro_color, width=330, height=170)
+        self.PYRRframe = tk.Frame (self.PYRRCua, bg=oscuro_color, padx=5, pady=5)
+        self.Button_CREAR = tk.Button (self.PYRRframe, text='Crear', padx=50, pady=5, font=('IBM Plex Mono',23), fg=tex_claro_color, bg=claro_color, width=10)
+        self.PYRRCua.pack()
+        self.PYRRframe.pack()
+        self.Button_CREAR.pack()
+        self.PYRRCua.place(rely=0.75, relx=0.666, anchor=CENTER)
+        self.PYRRframe.place(rely=0.5, relx=0.5, anchor=CENTER)
+
+
+        # ------- MENÚ -------- #
 
         self.PY3Cua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightthickness=2, bg=claro_color, width=450, height=150)
         self.PY3frame = tk.Frame (self.PY3Cua, bg=oscuro_color, padx=5, pady=5)
@@ -548,6 +660,13 @@ class menu:
         self.PY3Cua.place(rely=0.1, relx=0.5, anchor=CENTER)
         self.PY3frame.place(rely=0.5, relx=0.5, anchor=CENTER)
 
+        def GoToToCrear():
+            scrumwindow = tk.Toplevel()
+            self.master.destroy()
+            app = crear(scrumwindow)
+        
+        self.Button_CREAR['command'] = GoToToCrear
+        
         def GoToToDo():
             scrumwindow = tk.Toplevel()
             self.master.destroy()
