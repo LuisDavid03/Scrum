@@ -449,12 +449,59 @@ class crear:
         #-------------------------------BOTON----------------------------------
         self.PY2Cua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightcolor=claro_color, highlightthickness=2, bg=claro_color, width=320, height=100)
         self.PY2frame = tk.Frame (self.PY2Cua, bg=oscuro_color, padx=5, pady=5)
-        self.Button_InProgress = tk.Button (self.PY2frame, text= 'Crear', padx=50, pady=5, font=('IBM Plex Mono',23), fg=tex_claro_color, bg=claro_color, width=10)
+        self.Button_Crear = tk.Button (self.PY2frame, text= 'Crear', padx=50, pady=5, font=('IBM Plex Mono',23), fg=tex_claro_color, bg=claro_color, width=10)
         self.PY2Cua.pack()
         self.PY2frame.pack()
-        self.Button_InProgress.pack()
-        self.PY2Cua.place(rely=0.7, relx=0.5, anchor=CENTER)
-        self.PY2frame.place(rely=0.5, relx=0.5, anchor=CENTER)    
+        self.Button_Crear.pack()
+        self.PY2Cua.place(rely=0.7, relx=0.333, anchor=CENTER)
+        self.PY2frame.place(rely=0.5, relx=0.5, anchor=CENTER) 
+
+        self.PCua =tk.Frame (self.master, highlightbackground=oscuro_color, highlightcolor=claro_color, highlightthickness=2, bg=claro_color, width=320, height=100)
+        self.Pframe = tk.Frame (self.PCua, bg=oscuro_color, padx=5, pady=5)
+        self.Button_UpDate = tk.Button (self.Pframe, text= 'UpDate', padx=50, pady=5, font=('IBM Plex Mono',23), fg=tex_claro_color, bg=claro_color, width=10)
+        self.PCua.pack()
+        self.Pframe.pack()
+        self.Button_UpDate.pack()
+        self.PCua.place(rely=0.7, relx=0.666, anchor=CENTER)
+        self.Pframe.place(rely=0.5, relx=0.5, anchor=CENTER)    
+
+
+        def crear():
+            proyid = int(self.Entry_Proyid.get())
+            name = self.Entry_name.get().strip()
+            state = int(self.Entry_state.get())
+
+            c.execute(
+                    "insert into userstories(proyid,name,state) values (%s,%s,%s)",
+                    (proyid,name, state),
+                )
+            connection.commit()
+
+
+        def update():
+            proyid = int(self.Entry_Proyid.get())
+            name = self.Entry_name.get().strip()
+            state = int(self.Entry_state.get())
+
+            c.execute(
+                "update userstories set state = %s where name = %s and proyid = %s",
+                (state, name, proyid),
+            )
+            connection.commit()
+
+        self.Button_Crear['comand'] = crear
+        self.Button_UpDate['comand'] = update
+        
+        
+
+
+
+
+
+
+
+
+
 
 class sb:
 
@@ -712,8 +759,8 @@ def buscartabla1():
     ppp = c.fetchone()
     print(ppp)
 
-    hola = "select name from userstories where state = %s"
-    c.execute(hola,(1,))
+    hola = "select name from userstories where state = %s and proyid = %s"
+    c.execute(hola,(1,ooo,))
     record2 = c.fetchone()
 
     return record2
@@ -735,8 +782,8 @@ def buscartabla2():
     ppp = c.fetchone()
     print(ppp)
 
-    hola = "select name from userstories where state = %s"
-    c.execute(hola,(2,))
+    hola = "select name from userstories where state = %s and proyid = %s"
+    c.execute(hola,(2,ooo,))
     record2 = c.fetchone()
 
     return record2
@@ -758,8 +805,8 @@ def buscartabla3():
     ppp = c.fetchone()
     print(ppp)
 
-    hola = "select name from userstories where state = %s"
-    c.execute(hola,(3,))
+    hola = "select name from userstories where state = %s and proyid = %s"
+    c.execute(hola,(3,ooo,))
     record2 = c.fetchone()
 
     return record2
